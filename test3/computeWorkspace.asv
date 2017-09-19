@@ -1,0 +1,29 @@
+% Place your code for computing the workspace of the Lynx robot here.
+
+q1_values=-1.4:0.2:1.4;
+q2_values=-1.4:0.2:1.4;
+q3_values=-1.7:0.2:1.7;
+q4_values=-1.7:0.2:1.7;
+q5_values=-1.5:0.2:1.5;
+
+X_1=zeros(1,(15.^2)*(18.^2)*16);
+Y_1=zeros(1,(15.^2)*(18.^2)*16);
+Z_1=zeros(1,(15.^2)*(18.^2)*16);
+
+int i=0
+
+for q1_values
+    for q2_values
+        for q3_values
+            for q4_values
+                for q5_values
+                    [X, T] = updateQ(q1_values,q2_values,q3_values,q4_values,q5_values,10);
+                    X_1(1,i)=X(6,1);
+                    Y_1()=X(6,2);
+                    Z_1()=X(6,3);
+                    i++;
+                end
+            end
+        end
+    end
+end    

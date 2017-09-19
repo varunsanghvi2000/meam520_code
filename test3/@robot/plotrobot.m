@@ -383,17 +383,22 @@ function animate(robot, q)
  %The lines for the gripper are defined by four points.  A gripper
  %"elbow", or GE, and gripper tip, or GT
  d = q(6)/2+0.5;
- GEL = t*[d*25.4;0;0;1];
- GER = t*[-d*25.4;0;0;1];
- GTL = t*[d*25.4;0;1.125*25.4;1];
- GTR = t*[-d*25.4;0;1.125*25.4;1];
+%  GEL = t*[d*25.4;0;0;1];
+%  GER = t*[-d*25.4;0;0;1];
+%  GTL = t*[d*25.4;0;1.125*25.4;1];
+%  GTR = t*[-d*25.4;0;1.125*25.4;1];
+  GEL = t*[d*25.4;0;0;1];
+  GER = t*[-d*25.4;0;0;1];
+  GTL = t*[d*25.4;0;1.125*25.4;1];
+  GTR = t*[-d*25.4;0;1.125*25.4;1];
+
 % 
- x = [x; GEL(1);GTL(1);GEL(1);GER(1);GTR(1)];
- y = [y; GEL(2);GTL(2);GEL(2);GER(2);GTR(2)];
- z = [z; GEL(3);GTL(3);GEL(3);GER(3);GTR(3)];
- xs = [xs; GEL(1);GTL(1);GEL(1);GER(1);GTR(1)];
- ys = [ys; GEL(2);GTL(2);GEL(2);GER(2);GTR(2)];
- zs = [zs; h.zmin;h.zmin;h.zmin;h.zmin;h.zmin];
+  x = [x; GEL(1);GTL(1);GEL(1);GER(1);GTR(1)];
+  y = [y; GEL(2);GTL(2);GEL(2);GER(2);GTR(2)];
+  z = [z; GEL(3);GTL(3);GEL(3);GER(3);GTR(3)];
+  xs = [xs; GEL(1);GTL(1);GEL(1);GER(1);GTR(1)];
+  ys = [ys; GEL(2);GTL(2);GEL(2);GER(2);GTR(2)];
+  zs = [zs; h.zmin;h.zmin;h.zmin;h.zmin;h.zmin];
  
 %
 % draw the robot stick figure and the shadow
