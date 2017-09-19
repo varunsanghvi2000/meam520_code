@@ -14,6 +14,7 @@
 function [X, T] = updateQ(q)
 
 T = zeros(4,4,6);
+%dh parameters
 F = [0,pi/2,76.2,q(1,1);
      146.05,0,0,q(1,2)+(pi/2);
      184.15,0,0,q(1,3)-(pi/2);
@@ -24,7 +25,7 @@ X=zeros(6,3);
 
  
 for i = 1:6
-   
+% DH homogenous matrix   
     C =([cos(F(i,4)) -sin(F(i,4))*cos(F(i,2)) sin(F(i,4))*sin(F(i,2)) F(i,1)*cos(F(i,4));
              sin(F(i,4)) cos(F(i,4))*cos(F(i,2)) -cos(F(i,4))*sin(F(i,2)) F(i,1)*sin(F(i,4));
              0 sin(F(i,2)) cos(F(i,2)) F(i,3);
@@ -32,12 +33,12 @@ for i = 1:6
      T(:,:,i) = C;
         
 end
-T;
+% use the T matrix to calculat X values
 a1=T(:,:,1);
 a2=a1*T(:,:,2);
 a3=a2*T(:,:,3);
 a4=a3*T(:,:,4);
-a5=a4*T(:,:,5)
+a5=a4*T(:,:,5);
 v(1,:)=zeros(1,4);
 v(2,:)=a1(:,4)';
 v(3,:)=a2(:,4)';
@@ -45,10 +46,6 @@ v(4,:)=a3(:,4)';
 v(5,:)=a4(:,4)';
 v(6,:)=a5(:,4)';
 v(:,4)=[];
-a=v(6,1);
-b=v(6,2);
-c=v(6,3);
-%plot3(a,b,c,'.','MarkerSize',50);
 X=v;
 
 

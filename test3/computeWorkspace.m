@@ -1,10 +1,10 @@
 % Place your code for computing the workspace of the Lynx robot here.
 
-def_q1_values=-1.4:0.5:1.4;
-def_q2_values=-1.4:0.5:1.4;
-def_q3_values=-1.7:0.6:1.7;
-def_q4_values=-1.7:0.6:1.7;
-def_q5_values=-1.5:0.8:1.5;
+def_q1_values=-1.4:0.2:1.4;
+def_q2_values=-1.4:0.2:1.2;
+def_q3_values=-1.7:0.2:1.7;
+def_q4_values=-1.7:0.2:1.7;
+def_q5_values=-1.5:0.2:1.5;
 
 X_1=zeros(1,(15.^2)*(18.^2)*16);
 Y_1=zeros(1,(15.^2)*(18.^2)*16);
@@ -29,8 +29,15 @@ for q1_values=def_q1_values
     end
 end    
 
+% calculate the distance of the longest points the arm can reach from plot
+% of points to determine work space
+sort_r=[sqrt(X_1.^2+Y_1.^2+Z_1.^2);X_1;Y_1;Z_1];
+%sort according to max values
+B = sortrows(sort_r','descend');
+% eleminate values lower than max value
+B(B(:,1) < 400, :) = [];
+%plot the values
+scatter3(B(:,2),B(:,3),B(:,4),1,'filled')
 
-scatter3(X_1,Y_1,Z_1,'MarkerEdgeColor','k',...
-        'MarkerFaceColor',[0 .75 .75])
-view(-30,10)
+
 
